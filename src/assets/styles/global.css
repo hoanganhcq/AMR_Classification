@@ -1,0 +1,297 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f9fb;
+    color: #1f2937;
+}
+
+.navbar {
+    height: 72px;
+    padding: 0 48px;
+    background: #0f766e;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 24px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.navbar a.active {
+    border-bottom: 2px solid white;
+}
+
+.main-content {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.hero {
+    min-height: calc(100vh - 160px);
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr;
+    gap: 32px;
+    align-items: center;
+}
+
+.eyebrow {
+    color: #0f766e;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 44px;
+    line-height: 1.15;
+    color: #0f766e;
+}
+
+h2 {
+    color: #0f766e;
+}
+
+p {
+    line-height: 1.65;
+}
+
+.hero-desc {
+    font-size: 18px;
+}
+
+.hero-card,
+.predict-form,
+.info-panel,
+.result-card,
+.metric-card,
+.table-card,
+.about-card,
+.mechanism-card {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(15, 118, 110, 0.1);
+}
+
+.pipeline {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.pipeline span {
+    background: #ccfbf1;
+    color: #134e4a;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.mechanism-section,
+.page {
+    padding: 60px 0;
+}
+
+.mechanism-grid,
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin: 24px 0;
+}
+
+.mechanism-card {
+    font-weight: 700;
+    color: #134e4a;
+}
+
+.center {
+    text-align: center;
+    margin-top: 28px;
+}
+
+.primary-btn,
+button {
+    display: inline-block;
+    padding: 13px 22px;
+    background: #0f766e;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+}
+
+.predict-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 0.7fr;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.predict-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+textarea,
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+textarea {
+    font-family: Consolas, monospace;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.step span {
+    width: 34px;
+    height: 34px;
+    background: #e2e8f0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+}
+
+.step.active span {
+    background: #0f766e;
+    color: white;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.small-title {
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.result-card h2 {
+    font-size: 32px;
+}
+
+.probability-item {
+    background: #f8fafc;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border-left: 5px solid #cbd5e1;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.probability-item.highlight {
+    border-left-color: #0f766e;
+    background: #ccfbf1;
+}
+
+.metric-card h3 {
+    color: #475569;
+    margin: 0;
+}
+
+.metric-card p {
+    color: #0f766e;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+th {
+    background: #ccfbf1;
+    color: #134e4a;
+}
+
+.footer {
+    text-align: center;
+    padding: 24px;
+    color: #64748b;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 18px 20px;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero,
+    .predict-layout,
+    .result-grid,
+    .mechanism-grid,
+    .metric-grid,
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 34px;
+    }
+}
