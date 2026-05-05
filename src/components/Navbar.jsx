@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+const Navbar = () => {
     return (
         <header className="navbar">
             <div className="logo">🧬 AMR Classifier</div>
@@ -8,9 +8,9 @@ function Navbar() {
             <nav>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/predict">Predict</NavLink>
-                {/* <NavLink to="/results">Results</NavLink> */}
-                {/* <NavLink to="/evaluation">Evaluation</NavLink> */}
-                {/* <NavLink to="/about">About</NavLink> */}
+                <NavLink to="/results">Results</NavLink>
+                <NavLink to="/evaluation">Evaluation</NavLink>
+                <NavLink to="/about">About</NavLink>
             </nav>
         </header>
     );
