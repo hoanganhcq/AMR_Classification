@@ -8,6 +8,9 @@ const UploadBox = () => {
     const [sequenceType, setSequenceType] = useState("DNA");
     const [model, setModel] = useState("Random Forest");
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const { setPredictionResult } = usePredictionContext();
     const navigate = useNavigate();
 
@@ -15,23 +18,48 @@ const UploadBox = () => {
         ? ">dna_seq_001\nATGGCGATTCAGGCCGATCTGGATCAAGAT\n..."
         : ">protein_seq_001\nMVKVYAPASSANMSVGFDVLGAAVTPVDGALLGDVVTVEAA...\n...";
 
+    const handleFileUpload = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            setSequence(event.target.result);
+            setError("");
+        };
+        reader.readAsText(file);
+    };
+
     const handleRunPrediction = () => {
-        const result = mockPredict(sequence, sequenceType, model);
-        setPredictionResult(result);
-        navigate("/results");
+        if (!sequence.trim()) {
+            setError("Vui lòng tải file hoặc điền chuỗi FASTA trước khi chạy");
+        }
+
+        setError("");
+        setIsLoading(true);
+
+        setTimeout(() => {
+            const result = mockPredict(sequence, sequenceType, model);
+            setPredictionResult(result);
+            navigate("/results");
+        }, 1500);
+
     };
 
     return (
         <div className="predict-layout">
             <form className="predict-form">
                 <label>Upload FASTA file</label>
-                <input type="file" accept=".fasta,.fa,.txt" />
+                <input type="file" accept=".fasta,.fa,.txt" onChange={handleFileUpload} />
 
                 <label>Hoặc paste FASTA sequence</label>
                 <textarea
                     rows="10"
                     value={sequence}
-                    onChange={(e) => setSequence(e.target.value)}
+                    onChange={(e) => {
+                        setSequence(e.target.value);
+                        if (error) setError("");
+                    }}
                     placeholder={placeholderText}
                 />
 
@@ -57,8 +85,14 @@ const UploadBox = () => {
                     </div>
                 </div>
 
-                <button type="button" onClick={handleRunPrediction}>
-                    Run Classification
+                {error && <p style={{ color: 'red', fontSize: '0.9rem', marginBottom: '10px' }}>{error}</p>}
+
+                <button type="button"
+                    onClick={handleRunPrediction}
+                    disabled={isLoading || !sequence.trim()}
+                    style={{ opacity: (isLoading || !sequence.trim()) ? 0.6 : 1, cursor: isLoading ? 'wait' : 'pointer' }}
+                >
+                    {isLoading ? "Processing..." : "Run Classification"}
                 </button>
             </form>
 
